@@ -11,25 +11,28 @@ class Solution {
     }
 
     private static String longest_repeating(String s) {
-        // Split string to String[] where each are repeating
-        String[] repeating = map_to_repeated(s);
-        // Filter all but longest
-        String longest = find_longest(repeating);
-        // return that one
-        return longest;
+        String[] repeating = split_repeated_chars(s);
+        return find_longest(repeating);
     }
 
-    private static String[] map_to_repeated(String s) {
+    private static String[] split_repeated_chars(String s) {
         // Here I'm going to need to know how many elements to make 
         // Return value. I could just use an arrayList or something similar
         // But seems wasteful.
         // Other wise i'll need to scan the list to count the transitions. 
         // Could just use same length as string. Won't be more than this
 
+        if(s.length() < 1) {
+            System.out.println("Input must me a string. Current length: " + s.length());
+            // Can this be vacuoulsy true? If there are no characters is the longest repeating no characters?
+            throw new IllegalArgumentException("Input cannot be empty");
+        }
+
         String[] splits = new String[s.length()];
         int si = 0; // Tracks index into splits
         String[] chars = s.split("");
-        String acc = chars[0]; // TODO: Could be empty
+        String acc = chars[0];
+
         for(int i=1; i<s.length(); i++){
             String current = chars[i];
 
@@ -42,7 +45,9 @@ class Solution {
             }
         }
 
-        splits[si] = acc; // This will always be left off otherwise
+        // Handle last char/string here
+        // This will always be left off otherwise
+        splits[si] = acc;
         return splits;
     }
 
