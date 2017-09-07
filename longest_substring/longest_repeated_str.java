@@ -16,18 +16,13 @@ class Solution {
     }
 
     private static String[] split_repeated_chars(String s) {
-        // Here I'm going to need to know how many elements to make 
-        // Return value. I could just use an arrayList or something similar
-        // But seems wasteful.
-        // Other wise i'll need to scan the list to count the transitions. 
-        // Could just use same length as string. Won't be more than this
-
         if(s.length() < 1) {
             System.out.println("Input must me a string. Current length: " + s.length());
-            // Can this be vacuoulsy true? If there are no characters is the longest repeating no characters?
             throw new IllegalArgumentException("Input cannot be empty");
         }
 
+        // For simpliciy, splits is the same length as s. To cover the worst case of every char is different
+        // Should really be a stack or similar
         String[] splits = new String[s.length()];
         int si = 0; // Tracks index into splits
         String[] chars = s.split("");
