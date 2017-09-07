@@ -1,7 +1,9 @@
-
+import java.util.*;
 
 class Solution {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        Scanner sc = new Scanner(System.in);
+        Integer i = sc.nextInt();
+        System.out.printf("You entered: %d%n", i);
     }
 }
