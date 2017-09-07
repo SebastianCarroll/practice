@@ -26,9 +26,19 @@ class Solution {
         // Could just use same length as string. Won't be more than this
 
         String[] splits = new String[s.length()];
+        int si = 0; // Tracks index into splits
         String[] chars = s.split("");
-        for(int i=0; i<s.length(); i++){
-            splits[i] = chars[i];
+        String acc = chars[0]; // TODO: Could be empty
+        for(int i=1; i<s.length(); i++){
+            String current = chars[i];
+
+            if(acc.substring(0,1).equals(current)){
+                acc += current;
+            } else {
+                splits[si] = acc;
+                si++;
+                acc = current;
+            }
         }
 
         return splits;
