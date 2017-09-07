@@ -14,8 +14,9 @@ class Solution {
         // Split string to String[] where each are repeating
         String[] repeating = map_to_repeated(s);
         // Filter all but longest
+        String longest = find_longest(repeating);
         // return that one
-        return repeating[0];
+        return longest;
     }
 
     private static String[] map_to_repeated(String s) {
@@ -41,6 +42,20 @@ class Solution {
             }
         }
 
+        splits[si] = acc; // This will always be left off otherwise
         return splits;
+    }
+
+    private static String find_longest(String[] repeats) {
+        String longest = "";
+        for(String cur : repeats) {
+            // Must break due to our previous
+            // decision to use String[]
+            if(cur == null) break;
+            if(cur.length() > longest.length()) {
+                longest = cur;
+            }
+        }
+        return longest;
     }
 }
